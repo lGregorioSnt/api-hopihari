@@ -4,6 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
+const UsuariosRoute = require('./routes/login.route');
+const CadastroRoute = require('./routes/cadastro.route');
+const UpdateRoute = require('./routes/update.route');
+
 app.use(cors());
 app.use(helmet());
 
@@ -20,3 +24,9 @@ app.use((req, res, next) => {
     }
     next();
 })
+
+app.use('/usuarios', UsuariosRoute);
+app.use('/usuarios', CadastroRoute);
+app.use('/usuarios', UpdateRoute);
+
+module.exports = app;
