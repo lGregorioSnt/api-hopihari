@@ -20,6 +20,7 @@ exports.UpdateUsers = async (req, res) => {
         return res.status(500).send({ error: 'Erro interno no servidor' });
     }
     
+    
 };
 
 
@@ -53,3 +54,28 @@ exports.CreateUser = async (req, res) => {
         return res.status(500).send({ error: 'Erro interno no servidor' });
     }
 };
+
+exports.deleteUser = async (req, res) =>  {
+
+  try{  const result = await mysql.execute(
+        'DELETE FROM users WHERE id = ?',
+        [req.params.id]
+    );
+
+    if (result.affectedRows === 0) {
+        return res.status(404).send({ message: 'Usuário não encontrado' });
+  
+      }
+
+   else return res.status(200).send({
+      message: 'Usuário deletado com sucesso!',
+      resultado: result
+    });
+
+    
+  }
+  catch (error) {
+    console.error('Erro ao deletar usuário:', error);
+    return res.status(500).send({ error: 'Erro interno no servidor' });
+  }
+}

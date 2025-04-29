@@ -20,3 +20,4 @@ exports.execute = (querry, param = [], pool = connection) => {
         })
     });
 }
+
