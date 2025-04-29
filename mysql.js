@@ -1,5 +1,5 @@
 const mysql2 = require('mysql2');
-const pool = mysql2.createConnection({
+const connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
@@ -7,7 +7,7 @@ const pool = mysql2.createConnection({
     database: 'hopihari_db'
 });
 
-exports.execute = (querry, param = [], pool = pool) => {
+exports.execute = (querry, param = [], pool = connection) => {
     return new Promise((resolve, reject) => {
         pool.query(querry, param, (error, results) => {
             if (error) {
