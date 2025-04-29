@@ -4,6 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
+const usuariosroute = require('./routes/usuarios.route.js');
+app.use('/usuarios', usuariosroute);
+
+
 app.use(cors());
 app.use(helmet());
 
@@ -19,4 +23,6 @@ app.use((req, res, next) => {
         return res.status(200).json({});
     }
     next();
-})
+
+   
+});
