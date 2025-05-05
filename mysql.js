@@ -3,7 +3,7 @@ const connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    port: '3307',
+    port: '3306',
     database: 'hopihari_db'
 });
 

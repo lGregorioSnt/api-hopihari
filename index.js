@@ -7,9 +7,6 @@ const helmet = require("helmet")
 const usuariosRoute = require("./routes/usuarios.route");
 
 
-const UsuariosRoute = require('./routes/login.route');
-const CadastroRoute = require('./routes/cadastro.route');
-const UpdateRoute = require('./routes/update.route');
 
 app.use(cors());
 app.use(helmet());

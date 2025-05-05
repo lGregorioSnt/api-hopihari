@@ -1,13 +1,14 @@
 const mysql = require('../mysql.js');
 
+
 exports.UpdateUsers = async (req, res) => {
     try {
-      
         const id = Number(req.params.id);
+        const { first_name, last_name, email, password } = req.body;
 
         const result = await mysql.execute(
-            'UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?',
-            [req.body.name, req.body.email, req.body.password, id]
+            'UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?',
+            [first_name, last_name, email, password, id]
         );
 
         return res.status(200).send({
@@ -15,41 +16,36 @@ exports.UpdateUsers = async (req, res) => {
             resultado: result
         });
     } catch (error) {
-      
         console.error('Erro ao atualizar usuário:', error);
         return res.status(500).send({ error: 'Erro interno no servidor' });
     }
-    
-    
 };
+
 
 
 exports.CreateUser = async (req, res) => {
     try {
-    
-        const { name, email, password } = req.body;
+        const { first_name, last_name, email, password, birth_date, phone } = req.body;
 
-     
-        if (!name || !email || !password) {
-            return res.status(400).send({ error: 'Todos os campos (name, email, password) são obrigatórios.' });
+        // Verifica se todos os campos obrigatórios foram fornecidos
+        if (!first_name || !last_name || !email || !password || !birth_date || !phone) {
+            return res.status(400).send({ error: 'Todos os campos (first_name, last_name, email, password, birth_date, phone) são obrigatórios.' });
         }
 
         console.log('Dados recebidos para cadastro:', req.body);
 
-       
+        // Executa a query SQL com os valores corretos
         const result = await mysql.execute(
-            'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-            [name, email, password]
+            'INSERT INTO users (first_name, last_name, email, password, birth_date, phone) VALUES (?, ?, ?, ?, ?, ?)',
+            [first_name, last_name, email, password, birth_date, phone]
         );
 
-      
+        // Retorna a resposta de sucesso
         return res.status(201).send({
             message: 'Usuário cadastrado com sucesso!',
             resultado: result
         });
-        
     } catch (error) {
-       
         console.error('Erro ao cadastrar usuário:', error);
         return res.status(500).send({ error: 'Erro interno no servidor' });
     }
