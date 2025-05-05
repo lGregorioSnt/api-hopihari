@@ -1,8 +1,11 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const helmet = require('helmet');
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const helmet = require("helmet")
+
+const usuariosRoute = require("./routes/usuarios.route");
+
 
 const UsuariosRoute = require('./routes/login.route');
 const CadastroRoute = require('./routes/cadastro.route');
@@ -14,19 +17,17 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => { 
-    res.header("Access-Control-Allow-Origin", "*" );
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-    if (req.method === 'OPTIONS') {
-        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-        return res.status(200).json({});
+app.use((req, res, next) => {
+    res.header("Acess-Control-Allow-Origins", "*");
+    res.header("Acess-Control-Allow-Headers", 
+        "Origin, X-Requested-With, Content-type, Accept, Authorization")
+    if (req.method === 'Options'){
+        res.header("Acess-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
     }
     next();
-})
 
-app.use('/usuarios', UsuariosRoute);
-app.use('/usuarios', CadastroRoute);
-app.use('/usuarios', UpdateRoute);
+});
+
+app.use("/usuarios", usuariosRoute);
 
 module.exports = app;
