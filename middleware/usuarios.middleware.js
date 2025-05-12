@@ -8,7 +8,7 @@ exports.requireAuth = async (req, res, next) => {
             const decode = jwt.decode(token, "senhadojwt");
 
             if (decode.id) {
-                res.locals.idusuario = id;
+                res.locals.idusuario = decode.id;
             } else {
                 return res.status(401).send({
                     message: "Token inválido",
