@@ -18,8 +18,7 @@ exports.UpdateUsers = async (req, res) => {
             resultado: result
         });
     } catch (error) {
-        console.error('Erro ao atualizar usuário:', error);
-        return res.status(500).send({ error: 'Erro interno no servidor' });
+        return error;
     }
 };
 
@@ -52,8 +51,7 @@ exports.CreateUser = async (req, res) => {
             resultado: result
         });
     } catch (error) {
-        console.error('Erro ao cadastrar usuário:', error);
-        return res.status(500).send({ error: 'Erro interno no servidor' });
+        return error
     }
 };
 exports.deleteUser = async (req, res) => {
@@ -77,8 +75,7 @@ exports.deleteUser = async (req, res) => {
 
     }
     catch (error) {
-        console.error('Erro ao deletar usuário:', error);
-        return res.status(500).send({ error: 'Erro interno no servidor' });
+      return error
     }
 }
 
@@ -129,8 +126,7 @@ exports.LoginUser = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        return res.status(500).send({ error: 'Erro interno no servidor.' });
+       return error
     }
 };
 
