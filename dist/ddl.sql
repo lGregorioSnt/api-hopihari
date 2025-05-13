@@ -60,6 +60,8 @@ COLLATE = utf8mb4_unicode_ci;
 CREATE TABLE IF NOT EXISTS `hopihari_db`.`lines` (
   `users_id` INT NOT NULL,
   `rides_id` INT NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`users_id`, `rides_id`),
   INDEX `fk_users_has_rides_rides1_idx` (`rides_id` ASC) VISIBLE,
   INDEX `fk_users_has_rides_users_idx` (`users_id` ASC) VISIBLE,
@@ -75,27 +77,26 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `hopihari_db`.`Notificaçoes`
+-- Table `hopihari_db`.`notificaçoes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hopihari_db`.`Notificaçoes` (
+CREATE TABLE IF NOT EXISTS `hopihari_db`.`notificaçoes` (
   `id` INT NOT NULL,
-  `desc` VARCHAR(45) NULL,
+  `desc` VARCHAR(45) NULL DEFAULT NULL,
   `id_rides` INT NOT NULL,
   `id_users` INT NOT NULL,
+  `status` VARCHAR(45) NULL,
   PRIMARY KEY (`id`, `id_rides`, `id_users`),
   INDEX `id_idx` (`id_rides` ASC) VISIBLE,
   INDEX `id_user_idx` (`id_users` ASC) VISIBLE,
   CONSTRAINT `id`
     FOREIGN KEY (`id_rides`)
-    REFERENCES `hopihari_db`.`rides` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `hopihari_db`.`rides` (`id`),
   CONSTRAINT `id_user`
     FOREIGN KEY (`id_users`)
-    REFERENCES `hopihari_db`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `hopihari_db`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
