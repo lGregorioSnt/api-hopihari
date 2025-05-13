@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-exports.requireAuth = async (req, res, next) => {
+exports.required = async (req, res, next) => {
     try {
         res.locals.idusuario = 0;
 

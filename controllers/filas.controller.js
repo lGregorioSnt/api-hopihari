@@ -1,11 +1,29 @@
 const mysql = require('../mysql');
 
-exports.entrarfila = async (req, res, next) => {
-    try{
-        const resultados  = await mysql.execute(`
-            INSERT INTO lines (id_user, id_rides,) VALUES (?,?)
-            `, [res.locals.idusuario, req.body.idRide]);
-    
+
+exports.verificarBrinquedo = async (req, res, next) => {
+    try {
+        const resultado = await mysql.execute(`
+        SELECT * FROM rides WHERE id = ?;
+        `, [req.params.idbrinquedo]);
+
+        if (resultado.length === 0) {
+            return res.status(404).send({ "messagem": 'Brinquedo não encontrado' });
+            next();
+        }
+    }
+    catch {
+        return res.status(500).send(error);
+    }
+}
+
+
+exports.entrarFila = async (req, res, next) => {
+    try {
+        const resultados = await mysql.execute(`
+            INSERT INTO hopihari_db.lines (id_user, id_rides,) VALUES (?,?)
+            `, [res.locals.idusuario, Number(req.params.idRide)]);
+
         return res.status(200).send({
             message: 'Entrou na fila com sucesso',
             resultado: resultados
@@ -13,5 +31,4 @@ exports.entrarfila = async (req, res, next) => {
     } catch (error) {
         return res.status(500).send({ error: 'Erro interno no servidor' });
     }
-
 }
