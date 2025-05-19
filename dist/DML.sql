@@ -24,15 +24,14 @@ INSERT INTO rides (id, nome, tempo_espera, status, area) VALUES (3, 'Splash', 25
 
 --filas
 
-INSERT INTO lines (users_id, rides_id) VALUES (1, 1);
-INSERT INTO lines (users_id, rides_id) VALUES (2, 1);
+INSERT INTO `lines` (users_id, rides_id) VALUES (1, 1);
+INSERT INTO `lines` (users_id, rides_id) VALUES (2, 1);
 
-INSERT INTO lines (users_id, rides_id) VALUES (1, 2);
-INSERT INTO lines (users_id, rides_id) VALUES (3, 2);
+INSERT INTO `lines` (users_id, rides_id) VALUES (1, 2);
+INSERT INTO `lines` (users_id, rides_id) VALUES (3, 2);
 
-INSERT INTO lines (users_id, rides_id) VALUES (2, 3);
-INSERT INTO lines (users_id, rides_id) VALUES (3, 3);
-
+INSERT INTO `lines` (users_id, rides_id) VALUES (2, 3);
+INSERT INTO `lines` (users_id, rides_id) VALUES (3, 3);
 
 
 		SELECT 
