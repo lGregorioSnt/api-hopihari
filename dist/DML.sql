@@ -8,14 +8,14 @@ insert into rides (name, waiting_time, status, area) values
 ("minhoca", 20, "Movimentado", "A"),
 ("alianz", 5, "Normal", "B");
 
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (1, 1);
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (2, 1);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (6, 15);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (7, 15);
 
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (1, 2);
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (3, 2);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (7, 16);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (8, 16);
 
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (2, 3);
-	INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (3, 3);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (6, 17);
+		INSERT INTO `users_has_rides` (users_id, rides_id) VALUES (8, 17);
 
 -- ----------------------------------------------------------------------------------------------------------------------
 
