@@ -38,10 +38,16 @@ CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`rides` (
   `name` VARCHAR(100) NOT NULL,
   `waiting_time` INT NOT NULL,
   `status` VARCHAR(50) NOT NULL,
-  `area` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`id`))
+  `area` INT NOT NULL,
+  PRIMARY KEY (`id`, `area`),
+  INDEX `aa_idx` (`area` ASC) VISIBLE,
+  CONSTRAINT `aa`
+    FOREIGN KEY (`area`)
+    REFERENCES `hopi_hari_db`.`areas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 60
+AUTO_INCREMENT = 132
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 

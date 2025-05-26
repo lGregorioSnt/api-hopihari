@@ -82,3 +82,10 @@ VALUES
 ('ASTRONAVI', 6, 'open', (SELECT id FROM areas WHERE name = 'Infantasia')),
 ('KLAPI KLAPI', 8, 'open', (SELECT id FROM areas WHERE name = 'Infantasia'));
 
+insert into areas (name) 
+values 
+("Aribabiba"),
+("KamindaMundi"),
+("WildWest"),
+("Infantasia"),
+("Mistieri");
