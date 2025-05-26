@@ -18,6 +18,16 @@ CREATE SCHEMA IF NOT EXISTS `hopi_hari_db` DEFAULT CHARACTER SET utf8mb4 COLLATE
 USE `hopi_hari_db` ;
 
 -- -----------------------------------------------------
+-- Table `hopi_hari_db`.`areas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`areas` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `hopi_hari_db`.`rides`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`rides` (
@@ -25,10 +35,16 @@ CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`rides` (
   `name` VARCHAR(100) NOT NULL,
   `waiting_time` INT NOT NULL,
   `status` VARCHAR(50) NOT NULL,
-  `area` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`id`))
+  `id_areas` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_areas_idx` (`id_areas` ASC) VISIBLE,
+  CONSTRAINT `id_areas`
+    FOREIGN KEY (`id_areas`)
+    REFERENCES `hopi_hari_db`.`areas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 18
+AUTO_INCREMENT = 24
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
@@ -46,11 +62,10 @@ CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`users` (
   `phone` VARCHAR(20) NULL DEFAULT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `admin` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
