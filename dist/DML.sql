@@ -31,7 +31,7 @@ insert into rides (name, waiting_time, status, area) values
 		on rides.id = `users_has_rides`.Rides_id
 
 
-		INSERT INTO rides (name, waiting_time, status, id_areas)
+		INSERT INTO rides (name, waiting_time, status, area)
 VALUES 
 ('NAMUSKITA', 0, 'open', (SELECT id FROM areas WHERE name = 'WildWest')),
 ('LA MINA DEL JOE SACRAMENTO', 0, 'open', (SELECT id FROM areas WHERE name = 'WildWest')),
