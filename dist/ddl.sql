@@ -21,13 +21,10 @@ USE `hopi_hari_db` ;
 -- Table `hopi_hari_db`.`areas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`areas` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -38,16 +35,16 @@ CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`rides` (
   `name` VARCHAR(100) NOT NULL,
   `waiting_time` INT NOT NULL,
   `status` VARCHAR(50) NOT NULL,
-  `area` INT NOT NULL,
-  PRIMARY KEY (`id`, `area`),
-  INDEX `aa_idx` (`area` ASC) VISIBLE,
-  CONSTRAINT `aa`
-    FOREIGN KEY (`area`)
+  `id_areas` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_areas_idx` (`id_areas` ASC) VISIBLE,
+  CONSTRAINT `id_areas`
+    FOREIGN KEY (`id_areas`)
     REFERENCES `hopi_hari_db`.`areas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 132
+AUTO_INCREMENT = 24
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
