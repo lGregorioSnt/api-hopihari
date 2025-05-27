@@ -123,7 +123,14 @@ exports.LoginUser = async (req, res) => {
         return res.status(200).send({
             message: 'Login realizado com sucesso!',
             token: token,
-            user
+            user : {
+                firstname: user.first_name,
+                lastname: user.last_name,
+                email: user.email,
+                birthdate: user.birth_date,
+                phone: user.phone
+              
+            }   
         });
 
     } catch (error) {
