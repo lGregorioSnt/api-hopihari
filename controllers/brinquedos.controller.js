@@ -20,3 +20,24 @@ exports.addBrinquedo = async (req, res) => {
         return res.status(500).send({ error: 'Erro interno no servidor', detalhes: error.message });
     }
 };
+
+exports.getBrinquedosByAreaName = async (req, res) => {
+ try{
+  resultado = await mysql.execute(
+    `SELECT * FROM rides WHERE area = (SELECT id FROM areas WHERE name = ?); `, 
+    [req.params.areaName] );
+
+
+    if (resultado.length === 0) {
+        return res.status(404).send({ mensagem: 'Área não encontrada' });
+    }
+        return res.status(200).send({
+            mensagem: 'Consulta realizada com sucesso',
+            resultados: resultado
+  });
+
+ } catch (error) {
+    return res.status(500).send({ error: 'Erro interno no servidor'});
+ }
+
+}

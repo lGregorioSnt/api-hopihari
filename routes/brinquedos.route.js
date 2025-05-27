@@ -9,6 +9,9 @@ router.post('/',
     brinquedosController.addBrinquedo
 );
 
+router.get('/area/:areaName',
+    login.required, brinquedosController.getBrinquedosByAreaName
+)
 
 
 module.exports = router;

@@ -90,11 +90,3 @@ values
 ("Infantasia"),
 ("Mistieri");
 
-
-insert into areas (name) 
-values 
-("Aribabiba"),
-("KamindaMundi"),
-("WildWest"),
-("Infantasia"),
-("Mistieri");
