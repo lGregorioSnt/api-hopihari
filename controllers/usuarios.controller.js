@@ -138,4 +138,26 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
+exports.updateUserName = async (req, res) => {
+    try {
+        const { first_name, last_name } = req.body;
 
+        // Verifica se os campos obrigatórios foram fornecidos
+        if (!first_name || !last_name) {
+            return res.status(400).send({ error: 'Os campos first_name e last_name são obrigatórios.' });
+        }
+
+        const result = await mysql.execute(
+            'UPDATE users SET first_name = ?, last_name = ? WHERE id = ?',
+            [first_name, last_name, res.locals.idusuario]
+        );
+
+        return res.status(200).send({
+            message: 'Nome atualizado com sucesso!',
+            resultado: result
+        });
+    } catch (error) {
+       return error
+    }
+}
+ 
