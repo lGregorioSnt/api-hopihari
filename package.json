@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lGregorioSnt/api-hopihari.git"
+    "url": "git+https://github.com/BistonN/api-hopihari.git"
   },
-  "author": "",
+  "author": "BistonN",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lGregorioSnt/api-hopihari/issues"
+    "url": "https://github.com/BistonN/api-hopihari/issues"
   },
-  "homepage": "https://github.com/lGregorioSnt/api-hopihari#readme",
+  "homepage": "https://github.com/BistonN/api-hopihari#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^2.2.0",

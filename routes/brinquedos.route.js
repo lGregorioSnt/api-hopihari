@@ -6,7 +6,7 @@ const brinquedosController = require("../controllers/brinquedos.controller");
 router.post('/', 
     login.required,
     login.userRequired,
-    brinquedosController.addBrinquedo
+    brinquedosController.cadastrarBrinquedo
 );
 
 router.get('/area/:areaName',

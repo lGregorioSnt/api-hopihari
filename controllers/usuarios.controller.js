@@ -3,24 +3,34 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
-exports.UpdateUsers = async (req, res) => {
+exports.UpdateUser = async (req, res) => {
     try {
-        const id = Number(req.params.id);
-        const { first_name, last_name, email, password } = req.body;
+        const resultado = await mysql.execute(
 
-        const result = await mysql.execute(
-            'UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?',
-            [first_name, last_name, email, password, id]
+            `update users 
+            set first_name = ?,
+            last_name = ?, 
+            email = ?,
+            birth_date = ?, 
+            phone	= ?
+             where id = ?;`,
+            [
+                req.body.first_name,
+                req.body.last_name,
+                req.body.email,
+                req.body.birth_date,
+                req.body.phone,
+                res.locals.idUsuario
+            ]
+
         );
+        return res.status(201).send({ "mensagem": "Usuario atualizado com sucesso!" ,"resultado": resultado });
 
-        return res.status(200).send({
-            message: 'Usuário atualizado com sucesso!',
-            resultado: result
-        });
     } catch (error) {
-        return error;
+        return res.status(500).send({ error });
+
     }
-};
+}
 
 
 
@@ -138,26 +148,3 @@ exports.LoginUser = async (req, res) => {
     }
 };
 
-exports.updateUserName = async (req, res) => {
-    try {
-        const { first_name, last_name } = req.body;
-
-        // Verifica se os campos obrigatórios foram fornecidos
-        if (!first_name || !last_name) {
-            return res.status(400).send({ error: 'Os campos first_name e last_name são obrigatórios.' });
-        }
-
-        const result = await mysql.execute(
-            'UPDATE users SET first_name = ?, last_name = ? WHERE id = ?',
-            [first_name, last_name, res.locals.idusuario]
-        );
-
-        return res.status(200).send({
-            message: 'Nome atualizado com sucesso!',
-            resultado: result
-        });
-    } catch (error) {
-       return error
-    }
-}
- 

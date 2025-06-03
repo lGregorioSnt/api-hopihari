@@ -1,43 +1,42 @@
-const mysql = require('../mysql');
+const mysql = require("../mysql");
 
-exports.addBrinquedo = async (req, res) => {
+exports.cadastrarBrinquedo = async (req, res) => {
     try {
-        const resultado = await mysql.execute(
-            `INSERT INTO rides (name, waiting_time, status, area)
-            VALUES (?, ?, ?, ?);`, [
+        const resultados = await mysql.execute(`
+                INSERT INTO rides (name, waiting_time, status, area)
+                VALUES (?, ?, ?, ?)
+            `,[
                 req.body.name,
-                req.body.wating_time,
+                req.body.waiting_time,
                 req.body.status,
                 req.body.area
-            ]
-        );
-
+            ]);
         return res.status(201).send({
-            mensagem: 'Brinquedo adicionado com sucesso',
-            resultados: resultado
-        });
+            "Mensagem": "Brinquedo cadastrado com Sucesso!",
+            "resultados": resultados
+        })
     } catch (error) {
-        return res.status(500).send({ error: 'Erro interno no servidor', detalhes: error.message });
+        return res.status(500).send(error);
     }
-};
+}
 
 exports.getBrinquedosByAreaName = async (req, res) => {
- try{
-  resultado = await mysql.execute(
-    `SELECT * FROM rides WHERE area = (SELECT id FROM areas WHERE name = ?); `, 
-    [req.params.areaName] );
+    try {
+        resultados = await mysql.execute(`
+            SELECT * FROM rides WHERE id_areas = (
+                SELECT id FROM areas WHERE name = ?
+            );
+        `, [req.params.areaName]);
 
+        if (resultados.legth == 0) {
+            return res.status(404).send({"Mensagem": "Area do parque não Encontrada"});
+        }
 
-    if (resultado.length === 0) {
-        return res.status(404).send({ mensagem: 'Área não encontrada' });
-    }
         return res.status(200).send({
-            mensagem: 'Consulta realizada com sucesso',
-            resultados: resultado
-  });
-
- } catch (error) {
-    return res.status(500).send({ error: 'Erro interno no servidor'});
- }
-
+            "Mensagem": "Consulta realizada com Sucesso",
+            "resultados": resultados
+        })
+    } catch (error) {
+        return res.status(500).send(error);
+    }
 }

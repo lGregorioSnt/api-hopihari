@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const login = require("../middleware/usuarios.middleware");
-const notificationController = require("../controllers/notification.controller");
+const notificationController = require("../controllers/notifications.controller");
 
 
 router.get("/",
